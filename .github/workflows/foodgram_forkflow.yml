@@ -101,7 +101,7 @@ jobs:
           script: |
             sudo nginx -s stop
             cd ~
-            cd ./foodgram-project-react
+            cd /home/ftl/foodgram-project-react
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram:latest
             sudo docker-compose stop
             sudo docker-compose rm web
