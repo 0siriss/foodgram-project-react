@@ -4,6 +4,9 @@
 
 Проект «Продуктовый помощник». На этом сервисе пользователи могут публиковать рецепты, подписываться на публикации других пользователей, добавлять понравившиеся рецепты в список «Избранное», а перед походом в магазин скачивать сводный список продуктов, необходимых для приготовления одного или нескольких выбранных блюд.
 
+Проект развернут по адресу http://45.144.67.210/
+
+
 Стек: Python 3, Django 3, Django REST Framework, SQLite3, PostgreSQL, gunicorn, nginx, Яндекс.Облако (Ubuntu 22.04)
 
 # Особенности
@@ -22,7 +25,7 @@ _*Примечание: При выполнении команды ```docker-com
 Чтобы развернуть проект, вам потребуется:
 1) Клонировать репозиторий GitHub (не забываем создать виртуальное окружение и установить зависимости):
 ```python
-git clone https://github.com/f0rt3hlulz/foodgram-project-react
+git clone https://github.com/0siriss/foodgram-project-react
 ```
 2) Создать файл ```.env``` в папке проекта _/infra/_ и заполнить его всеми ключами:
 ```
@@ -228,4 +231,4 @@ POST-запрос: /api/auth/token/login/
 
 ### <br /> Автор проекта:
 - Frontend - https://github.com/yandex-praktikum/foodgram-project-react
-- Backend - https://github.com/f0rt3hlulz
+- Backend - https://github.com/0siriss 
