@@ -72,8 +72,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          password: ${{ secrets.SSH_PASS }}
+          # key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           source: "infra/nginx/default.conf"
           target: "/home/ftl/foodgram-project-react/nginx"
@@ -84,8 +84,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          password: ${{ secrets.SSH_PASS }}
+          # key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           source: "infra/docker-compose.yaml, infra/.env"
           target: "/home/ftl/foodgram-project-react"
@@ -96,8 +96,8 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.USER }}
-          key: ${{ secrets.SSH_KEY }}
-          passphrase: ${{ secrets.PASSPHRASE }}
+          password: ${{ secrets.SSH_PASS }}
+          # key: ${{ secrets.SSH_KEY }}
           script: |
             sudo nginx -s stop
             cd ~
