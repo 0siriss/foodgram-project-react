@@ -1,4 +1,4 @@
-version: '3.8'
+version: '2.2'
 
 services:
   db:
@@ -15,7 +15,7 @@ services:
       - ./.env
 
   web:
-    image: f0rt3hlulz/foodgram:latest
+    image: osiriss/foodgram:latest
     restart: always
     volumes:
       - static_value:/app/static/
@@ -27,7 +27,7 @@ services:
       - ./.env
   
   frontend:
-    image: f0rt3hlulz/foodgram_frontend:latest
+    image: osiriss/foodgram_frontend:latest
     volumes:
       - ./frontend/:/app/result_build/
     container_name: 'frontend'
