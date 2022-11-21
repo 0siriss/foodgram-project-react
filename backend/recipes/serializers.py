@@ -54,8 +54,8 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
         for ingridient in ingredients:
             IngredientRecipe.objects.create(
                 ingredient_id=ingridient.get('id'),
-                amount=ingridient.get('amount'),
-                recipe=recipe
+                amount=ingridient.get('amount')
+                # recipe=recipe
             )
 
     def create(self, validated_data):
