@@ -20,31 +20,8 @@ class Ingredient(models.Model):
         return f'{self.name}, {self.measurement_unit}'
 
 
-class Tag(models.Model):
-    name = models.CharField('Название тега', max_length=50, unique=True)
-    color = models.CharField(
-        'HEX-код цвета',
-        max_length=7,
-        unique=True,
-        validators=[
-            validators.RegexValidator(
-                regex=r'^#[a-fA-F\d]{6}$',
-                message='Неверное значение HEX-кода'
-            )
-        ],
-    )
-    slug = models.SlugField(max_length=50, unique=True)
-
-    class Meta:
-        ordering = ('name',)
-        verbose_name = 'Тэг'
-        verbose_name_plural = 'Тэги'
-
-    def __str__(self):
-        return self.name
-
-
 class IngredientRecipe(models.Model):
+
     ingredient = models.ForeignKey(
         Ingredient,
         on_delete=models.CASCADE,
@@ -67,6 +44,30 @@ class IngredientRecipe(models.Model):
             f'({self.ingredient.measurement_unit})'
             f' - {self.amount}'
         )
+
+
+class Tag(models.Model):
+    name = models.CharField('Название тега', max_length=50, unique=True)
+    color = models.CharField(
+        'HEX-код цвета',
+        max_length=7,
+        unique=True,
+        validators=[
+            validators.RegexValidator(
+                regex=r'^#[a-fA-F\d]{6}$',
+                message='Неверное значение HEX-кода'
+            )
+        ],
+    )
+    slug = models.SlugField(max_length=50, unique=True)
+
+    class Meta:
+        ordering = ('name',)
+        verbose_name = 'Тэг'
+        verbose_name_plural = 'Тэги'
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -122,5 +123,33 @@ class Recipe(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class IngredientRecipe(models.Model):
+
+    ingredient = models.ForeignKey(
+        Ingredient,
+        on_delete=models.CASCADE,
+        related_name='ingredient_recipe',
+        verbose_name='Название ингредиента'
+    )
+
+    amount = models.PositiveSmallIntegerField(
+        'Количество',
+        validators=[validate_zero],
+    )
+
+    class Meta:
+        verbose_name = 'Ингредиент в рецепте'
+        verbose_name_plural = 'Ингредиенты в рецепте'
+
+    def __str__(self):
+        return (
+            f'{self.ingredient.name}'
+            f'({self.ingredient.measurement_unit})'
+            f' - {self.amount}'
+        )
+
+
 
 
