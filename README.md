@@ -8,7 +8,6 @@
 Администратор - Admin
 Пароль - Ad9922165
 
-
 Стек: Python 3, Django 3, Django REST Framework, SQLite3, PostgreSQL, gunicorn, nginx, Яндекс.Облако (Ubuntu 22.04)
 
 # Особенности
