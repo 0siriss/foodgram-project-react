@@ -1,10 +1,58 @@
 from django.db.models import F
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
-from users.serializers import UserAuthSerializer
+from backend.recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
+from backend.recipes.validators import validate_zero
+from djoser.serializers import UserCreateSerializer
+from ..users.models import User
 
-from .models import Ingredient, IngredientRecipe, Recipe, Tag
-from .validators import validate_zero
+
+class RecipeForUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = (
+            'id',
+            'name',
+            'image',
+            'cooking_time'
+        )
+
+
+class UserAuthSerializer(UserCreateSerializer):
+    is_subscribed = serializers.SerializerMethodField(read_only=True)
+
+    class Meta(UserCreateSerializer.Meta):
+        fields = (
+            'username', 'id', 'email', 'first_name', 'last_name', 'password',
+            'is_subscribed',
+        )
+        extra_kwargs = {'password': {'write_only': True}}
+        model = User
+
+    def get_is_subscribed(self, obj):
+        user = self.context.get('request').user
+        if user.is_authenticated:
+            return user.followers.filter(pk=obj.pk).exists()
+        return False
+
+
+class UserSerializer(UserAuthSerializer):
+    recipes = serializers.SerializerMethodField(read_only=True)
+    recipes_count = serializers.SerializerMethodField(read_only=True)
+
+    class Meta:
+        fields = (
+            'email', 'id', 'username', 'first_name', 'last_name',
+            'is_subscribed', 'recipes', 'recipes_count'
+        )
+        model = User
+
+    def get_recipes(self, obj):
+        queryset = Recipe.objects.filter(author=obj)
+        return RecipeForUserSerializer(queryset, many=True).data
+
+    def get_recipes_count(self, obj):
+        return obj.recipes.count()
 
 
 class IngredientSerializer(serializers.ModelSerializer):
@@ -52,10 +100,10 @@ class RecipeWriteSerializer(serializers.ModelSerializer):
 
     def add_ingredients(self, recipe, ingredients):
         for ingridient in ingredients:
-            IngredientRecipe.objects.create(
+            IngredientRecipe.objects.get_or_create(
                 ingredient_id=ingridient.get('id'),
-                amount=ingridient.get('amount')
-                # recipe=recipe
+                amount=ingridient.get('amount'),
+                recipe=recipe
             )
 
     def create(self, validated_data):

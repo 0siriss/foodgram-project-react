@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', default='0-(-x-=6(6j3ehw)_xv2t^8$%y4qolbbh0
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='*')
 
 # Application definition
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_filters',
     'djoser',
+    'api',
     'recipes',
     'users'
 ]
