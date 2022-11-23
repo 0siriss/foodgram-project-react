@@ -1,7 +1,4 @@
 from django.contrib import admin
-
-from symbol import except_clause
-
 from .models import Ingredient, IngredientRecipe, Recipe, Tag
 
 EMPTY = '-пусто-'
@@ -30,9 +27,10 @@ class RecipeAdmin(admin.ModelAdmin):
     search_fields = (
         'name', 'author__username', 'tags__name', 'ingredients__name'
     )
+
     def get_ingredients(self, obj):
         return ', '.join(list(obj.ingredients.values_list('name', flat=True)))
-        
+
     def get_tags(self, obj):
         return obj.tags.values_list('name', flat=True)
 

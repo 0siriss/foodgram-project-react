@@ -18,12 +18,13 @@ def add_or_del_obj(pk, request, param, data_for_validate):
         return Response(serialize.data, status=status.HTTP_201_CREATED)
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
+
 def create_shopping_list(ingredients):
     text_list = ['Список необходимых ингредиентов:\n']
     text_list += [
         f'{ingredient.get("ingredient__name").capitalize()} '
         f'({ingredient.get("ingredient__measurement_unit")}) - '
-        f'{ingredient.get("sum_amount")}\n' 
+        f'{ingredient.get("sum_amount")}\n'
         for ingredient in list(ingredients)
     ]
     text_list += ['\n\nДанные проекта Foodgram']

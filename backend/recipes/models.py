@@ -149,7 +149,3 @@ class IngredientRecipe(models.Model):
             f'({self.ingredient.measurement_unit})'
             f' - {self.amount}'
         )
-
-
-
-

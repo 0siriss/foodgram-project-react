@@ -10,7 +10,7 @@ class UserAdminForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(UserAdminForm, self).__init__(*args, **kwargs)
         self.fields['password'].widget = forms.PasswordInput()
-    
+
     class Meta:
         model = User
         fields = '__all__'
@@ -29,4 +29,3 @@ class UserAdmin(admin.ModelAdmin):
 
     def followers_count(self, obj):
         return obj.followers.count()
-   
