@@ -11,7 +11,8 @@ class IngredientSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Ingredient
-        fields = ('id', 'name', 'measurement_unit')
+        fields = '__all__'
+        read_only_fields = '__all__',
 
 
 class IngredientRecipeSerializer(serializers.ModelSerializer):
