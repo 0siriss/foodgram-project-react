@@ -3,8 +3,7 @@ from djoser.serializers import UserCreateSerializer
 from recipes.models import Recipe
 from rest_framework import serializers
 
-
-User = get_user_model()
+from backend.users.models import User
 
 
 class RecipeForUserSerializer(serializers.ModelSerializer):
