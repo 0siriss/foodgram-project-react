@@ -1,6 +1,6 @@
 [![Django-app workflow](https://github.com/f0rt3hlulz/foodgram-project-react/actions/workflows/foodgram_forkflow.yml/badge.svg)](https://github.com/f0rt3hlulz/foodgram-project-react/actions/workflows/foodgram_forkflow.yml)
 
-# Описание.
+# Описание. test
 
 Проект «Продуктовый помощник». На этом сервисе пользователи могут публиковать рецепты, подписываться на публикации других пользователей, добавлять понравившиеся рецепты в список «Избранное», а перед походом в магазин скачивать сводный список продуктов, необходимых для приготовления одного или нескольких выбранных блюд.
 
