@@ -80,7 +80,7 @@ jobs:
           # key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           source: "infra/nginx/default.conf"
-          target: "/home/ftl/foodgram-project-react/nginx"
+          target: "/home/root/foodgram-project-react/nginx"
           strip_components: 2
           
       - name: Copy docker-compose.yaml via ssh
@@ -92,7 +92,7 @@ jobs:
           # key: ${{ secrets.SSH_KEY }}
           port: ${{ secrets.PORT }}
           source: "infra/docker-compose.yaml, infra/.env"
-          target: "/home/ftl/foodgram-project-react"
+          target: "/home/root/foodgram-project-react"
           strip_components: 1
 
       - name: executing remote ssh commands to deploy
@@ -105,7 +105,7 @@ jobs:
           script: |
             sudo nginx -s stop
             cd ~
-            cd /home/ftl/foodgram-project-react
+            cd /home/root/foodgram-project-react
             sudo docker pull ${{ secrets.DOCKER_USERNAME }}/foodgram:latest
             sudo docker-compose stop
             sudo docker-compose rm web
