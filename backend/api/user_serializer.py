@@ -6,15 +6,15 @@ from rest_framework import serializers
 from users.models import User
 
 
-# class RecipeForUserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Recipe
-#         fields = (
-#             'id',
-#             'name',
-#             'image',
-#             'cooking_time'
-#         )
+class RecipeForUserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Recipe
+        fields = (
+            'id',
+            'name',
+            'image',
+            'cooking_time'
+        )
 
 
 class UserAuthSerializer(UserCreateSerializer):
