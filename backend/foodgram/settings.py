@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     'djoser',
     'api',
     'recipes',
-    'users'
+    'users',
 ]
 
 MIDDLEWARE = [
@@ -150,7 +150,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 
-    'DEFAULT_PAGINATION_CLASS': 'recipes.pagination.LimitPageNumberPagination',
+    'DEFAULT_PAGINATION_CLASS': 'api.pagination.LimitPageNumberPagination',
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -166,8 +166,8 @@ DJOSER = {
         'user_list': ('rest_framework.permissions.AllowAny',)
     },
     'SERIALIZERS': {
-        'user_create': 'users.serializers.UserAuthSerializer',
-        'user': 'users.serializers.UserAuthSerializer',
-        'current_user': 'users.serializers.UserAuthSerializer',
+        'user_create': 'api.user_serializer.UserAuthSerializer',
+        'user': 'api.user_serializer.UserAuthSerializer',
+        'current_user': 'api.user_serializer.UserAuthSerializer',
     }
 }

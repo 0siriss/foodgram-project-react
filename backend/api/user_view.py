@@ -1,12 +1,15 @@
+from django.contrib.auth import get_user_model
 from djoser.views import UserViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from .serializers import UserSerializer
-from .serializers import UserAuthSerializer
-from .services import add_or_del_obj
-from ..users.models import User
+from backend.api.user_serializer import UserSerializer
+from backend.api.user_serializer import UserAuthSerializer
+from backend.api.services import add_or_del_obj
 from rest_framework import status
 from rest_framework.decorators import action
+
+
+User = get_user_model()
 
 
 class UserViewSetForRequests(UserViewSet):
