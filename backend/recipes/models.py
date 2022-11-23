@@ -2,7 +2,7 @@ from django.core import validators
 from django.db import models
 
 from .validators import validate_zero
-from ..users.models import User
+from users.models import User
 
 
 class Ingredient(models.Model):

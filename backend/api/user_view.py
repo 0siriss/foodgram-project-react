@@ -8,7 +8,7 @@ from .services import add_or_del_obj
 from rest_framework import status
 from rest_framework.decorators import action
 
-from ..users.models import User
+from users.models import User
 
 
 class UserViewSetForRequests(UserViewSet):
