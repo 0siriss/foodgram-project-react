@@ -7,7 +7,7 @@ from rest_framework.filters import SearchFilter
 from rest_framework.permissions import AllowAny
 from .user_serializer import RecipeForUserSerializer
 from .filters import IngredientFilter, RecipeFilter
-from backend.recipes.models import Ingredient, Recipe, Tag
+from recipes.models import Ingredient, Recipe, Tag
 from .permissions import AuthPostAuthorChangesOrReadOnly
 from .serializers import (
     IngredientRecipe, IngredientSerializer,

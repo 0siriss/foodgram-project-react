@@ -1,6 +1,7 @@
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
+
 from .validators import validate_zero
 
 
@@ -20,32 +21,6 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return f'{self.name}, {self.measurement_unit}'
-
-
-class IngredientRecipe(models.Model):
-
-    ingredient = models.ForeignKey(
-        Ingredient,
-        on_delete=models.CASCADE,
-        related_name='ingredient_recipe',
-        verbose_name='Название ингредиента'
-    )
-
-    amount = models.PositiveSmallIntegerField(
-        'Количество',
-        validators=[validate_zero],
-    )
-
-    class Meta:
-        verbose_name = 'Ингредиент в рецепте'
-        verbose_name_plural = 'Ингредиенты в рецепте'
-
-    def __str__(self):
-        return (
-            f'{self.ingredient.name}'
-            f'({self.ingredient.measurement_unit})'
-            f' - {self.amount}'
-        )
 
 
 class Tag(models.Model):
@@ -90,7 +65,7 @@ class Recipe(models.Model):
         help_text='Введите описание рецепта'
     )
     ingredients = models.ManyToManyField(
-        IngredientRecipe,
+        Ingredient,
         through='IngredientRecipe',
         related_name='ingredients',
         verbose_name='Ингредиенты'
@@ -141,6 +116,11 @@ class IngredientRecipe(models.Model):
         validators=[validate_zero],
     )
 
+    recipe = models.ForeignKey(
+        Recipe,
+        on_delete=models.CASCADE,
+        verbose_name='Рецепт',
+    )
     class Meta:
         verbose_name = 'Ингредиент в рецепте'
         verbose_name_plural = 'Ингредиенты в рецепте'
@@ -151,3 +131,4 @@ class IngredientRecipe(models.Model):
             f'({self.ingredient.measurement_unit})'
             f' - {self.amount}'
         )
+

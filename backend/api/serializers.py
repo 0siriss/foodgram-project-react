@@ -2,9 +2,9 @@ from django.db.models import F
 from drf_extra_fields.fields import Base64ImageField
 from rest_framework import serializers
 
-from backend.api.user_serializer import UserAuthSerializer
-from backend.recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
-from backend.recipes.validators import validate_zero
+from .user_serializer import UserAuthSerializer
+from recipes.models import Ingredient, IngredientRecipe, Recipe, Tag
+from recipes.validators import validate_zero
 
 
 class IngredientSerializer(serializers.ModelSerializer):
