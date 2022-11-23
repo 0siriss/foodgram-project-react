@@ -1,2 +1,2 @@
-from backend.recipes.models import Recipe
-from backend.users.models import User
+from backend.recipes import models, apps, admin 
+from backend.users import apps, models, admin
